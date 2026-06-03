@@ -1,6 +1,11 @@
 name: GitHub Profile Summary Cards
 
 on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "profile-summary-card-output/**"
   schedule:
     - cron: "0 18 * * *"
   workflow_dispatch:
@@ -20,4 +25,17 @@ jobs:
           USERNAME: yukiidayo
           BRANCH_NAME: main
           UTC_OFFSET: 9
-          AUTO_PUSH: true
+          AUTO_PUSH: false
+
+      - name: Keep selected cards
+        run: |
+          find profile-summary-card-output -mindepth 1 -maxdepth 1 -type d ! -name nord_dark ! -name nord_bright -exec rm -rf {} +
+          find profile-summary-card-output/nord_dark profile-summary-card-output/nord_bright -type f ! -name "0-profile-details.svg" ! -name "2-most-commit-language.svg" ! -name "4-productive-time.svg" -delete
+
+      - name: Commit selected cards
+        run: |
+          git config --global user.email "profile-summary-cards-bot@example.com"
+          git config --global user.name "profile-summary-cards[bot]"
+          git add profile-summary-card-output
+          git diff --cached --quiet || git commit -m "Generate selected profile summary cards"
+          git push
