@@ -1,5 +1,6 @@
-# I'm Yukidayo
+# Yukidayo
 
+I like building things. Lately, I’ve been exploring web, mobile, servers, and networks.
 ***
 
 ## Activity
@@ -35,4 +36,4 @@
 <img src="https://skillicons.dev/icons?i=kotlin,py,cpp,c,docker,mysql,kubernetes,linux&theme=light" />
 
 **Learning**  
-<img src="https://skillicons.dev/icons?i=swift,go,raspberrypi&theme=light" />
+<img src="https://skillicons.dev/icons?i=swift,go,wasm,raspberrypi&theme=light" />
